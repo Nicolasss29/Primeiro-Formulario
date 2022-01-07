@@ -1,0 +1,22 @@
+CREATE DATABASE sistema; 
+USE sistema;
+/* Visualizando as tabelas existentes: show table*/
+/* Criando a primera tabela */
+CREATE TABLE clientes (
+nome VARCHAR (50),
+nascimento DATE,
+sexo  VARCHAR (10),
+eCivil VARCHAR (15),
+email  VARCHAR(50),
+rEmail  BOOLEAN ,
+ddd1 CHAR (2),
+tel1 CHAR (9),
+tipo1 VARCHAR (30),
+ddd2 CHAR (2),
+tel2 CHAR (9),
+tipo2 VARCHAR (30),
+ddd3 CHAR (2),
+tel3 CHAR (9),
+tipo3 VARCHAR (30),
+obs TEXT
+);
