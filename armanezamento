@@ -1,0 +1,124 @@
+<html>
+<head>
+<title>armazenamento</title>
+<head>
+<body>
+<h2><b><i>Dados do Cliente</b></i></h2>
+<?php
+// 1- Salvar em variáveis os dados que estão vindo
+$nome = $_POST["nome"];
+$nascimento = $_POST["nascimento"];
+$genero = $_POST["genero"];
+$eCivil = $_POST["eCivil"];
+$email = $_POST["email"];
+$tel1 = $_POST["tel1"];
+$dd1 = $_POST["dd1"];
+$tipo1 = $_POST["tipo1"];
+$tel2 = $_POST["tel2"];
+$dd2 = $_POST["dd2"];
+$tipo2 = $_POST["tipo2"];
+$tel3 = $_POST["tel3"];
+$dd3 = $_POST["dd3"];
+$tipo3 = $_POST["tipo3"];
+$observacoes = $_POST["observacoes"];
+
+$rEmail		= 0;
+if(isset($_POST["rEmail"]))
+	$rEmail = $_POST["rEmail"];
+			
+// 2. Validação básica
+if($nome=="")
+die("O nome do cliente deve ser informado. Sistema cancelado!");
+if($nascimento=="")
+die("A data de nascimento deve ser informada. Sistema cancelado!");
+if($genero=="")
+die("O sexo do cliente deve ser informado. Sistema cancelado!");
+if($email=="")
+die("O email deve ser informado. Sistema cancelado!");
+if($tel1=="")
+die("É preciso que pelo menos um telefone seja informado. Sistema cancelado!");
+if($dd1=="")
+die("O DDD do cliente deve ser informado. Sistema cancelado!");
+if($tipo1=="")
+die("É preciso que informe o tipo de telefone. Sistema cancelado!");
+            echo "Nome do cliente: <b>$nome</b> ";
+			echo "<br><br>";
+			echo "Data de nascimento: <b>$nascimento</b>";
+			echo "<br><br>";
+			echo "Sexo: <b>$genero</b>";
+			echo "<br><br>";
+			echo "Recebido estado civil = <b>$eCivil</b>"; 
+			echo "<br><br>";
+			echo "e-mail: <b>$email</b> ";
+			echo "<br><br>";
+			echo "DDD do cliente: $dd1"; 
+			echo "<br><br>";	
+			echo "Telefone do cliente: <b>$tel1</b>"; 
+			echo "<br><br>"; 
+			echo "Tipo de telefone: <b>$tipo1</b>"; 
+			echo "<br><br>"; 
+			echo "2º DDD do cliente: $dd2"; 
+			echo "<br><br>";	
+			echo "2º Telefone do cliente : <b>$tel2</b>";
+            echo "<br><br>";
+			echo "Tipo de telefone: <b>$tipo2</b>"; 
+			echo "<br><br>"; 
+			echo "3º DDD do cliente: $dd3"; 
+			echo "<br><br>";	
+			echo "3º Telefone do cliente: <b>$tel3</b>"; 			
+			echo "<br><br>";
+            echo "Tipo de telefone: <b>$tipo3</b>"; 
+			echo "<br><br>"; 			
+			echo "Recebido as observações = <b>$observacoes</b>"; 
+			echo "<br><br>";
+			if(isset($_POST["rEmail"]))
+	{
+		// Objeto foi enviado
+		echo "Recebido caixa de checagem = " . $_POST["rEmail"];
+	}
+	else
+	{
+		// Objeto não foi enviado
+		echo "Objeto caixa de checagem não foi enviado.";
+	}
+
+
+echo "<br>";
+// Conectar no servidor MYSQL
+	$con=mysqli_connect("localhost","root","");
+// Abrir o banco de dados
+mysqli_select_db($con, "sistema") or 
+	die("Erro ao abrir o banco:<br>" . mysqli_error($con));
+// Inserir o comando de inserção numa variável
+$sql = "INSERT INTO clientes VALUES (
+'$nome',
+'$nascimento',
+'$genero',
+'$eCivil',
+'$email ',
+'$rEmail',
+'$dd1',
+'$tel1',
+'$tipo1',			
+'$dd2',
+'$tel2',	
+'$tipo2',
+'$dd3',
+'$tel3',
+'$tipo3',
+'$observacoes'
+			)";
+// Mostrar a variável na tela para testar no console
+// die($sql);
+// Enviar para o banco
+mysqli_query($con, $sql) or 
+ die("Erro ao cadastrar o cliente:<br>" . mysqli_error($con));
+ 
+ echo "Dados do cliente <b>$nome</b> cadastrados com sucesso!";
+ 
+
+?>
+<hr>
+		Clique <a href="cadastro.html">aqui</a> para cadastrar um novo candidato.
+</body>
+</html>
